@@ -61,23 +61,6 @@ Avoid:
 
 Default to functions and data structures unless objects clearly reduce complexity.
 
-Prefer:
-
-- Plain functions
-- Immutable data flow
-- Tagged unions / discriminated unions
-- Explicit inputs and outputs
-- Small composable helpers
-- No shared or global mutation
-
-Use objects/classes only when they model real lifecycle or stateful resources.
-
-Avoid:
-
-- Classes that mostly act as namespaces
-- Stateful helpers with hidden internal behavior
-- Methods that depend on initialization order or mutation history
-
 ## Build Modules with Clear APIs
 
 Each module should have one job and expose a small surface area.
