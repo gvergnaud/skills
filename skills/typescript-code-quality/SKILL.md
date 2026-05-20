@@ -57,6 +57,8 @@ Avoid:
 - Recomputing the same derived state in multiple places
 - Encoding important logic in string manipulation or ad hoc conditionals
 
+Do not extract a function that is used only once unless the code is significantly complex, benefits from a named abstraction for domain clarity, or relies on locally mutable variables that should be isolated. Inline one-off transformations when the surrounding flow stays easy to read.
+
 ## Prefer Functional Patterns over Stateful OO
 
 Default to functions and data structures unless objects clearly reduce complexity.
@@ -76,6 +78,19 @@ Avoid:
 
 - Leaking transport/framework types across layers
 - Requiring callers to understand internal representation details
+
+## NEVER Pass More Parameters Than Needed
+
+A function signature is part of its contract. Pass only the values the function actually needs to do its job.
+
+Avoid:
+
+- Passing a whole object when the function reads only one or two fields
+- Threading extra context through functions "just in case"
+- Accepting broad bags of dependencies or options when the function uses a narrow subset
+- Passing values that are merely convenient for the caller but irrelevant to the callee
+
+Prefer narrow signatures that make dependencies explicit. If a function needs many inputs, first ask whether it is doing too much, whether those inputs form a meaningful domain value, or whether the caller should compute a smaller intermediate value before calling it.
 
 ## Import Paths Encode Module Boundaries
 
