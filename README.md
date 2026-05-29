@@ -39,6 +39,10 @@ it with the same commands.
 
 ## Skills
 
+- [code-quality](./skills/code-quality/SKILL.md) - Language-agnostic guidance
+  for writing, reviewing, and refactoring code with local reasoning, low
+  integration complexity, narrow APIs, honest domain models, and manageable
+  cyclomatic complexity.
 - [typescript-code-quality](./skills/typescript-code-quality/SKILL.md) -
   Guidance for writing and refactoring TypeScript with maintainability, type
   safety, explicit error handling, local reasoning, and strong module
