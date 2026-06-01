@@ -22,9 +22,13 @@ Broken local reasoning looks like:
 
 Prefer explicit dependencies, explicit results, narrow contracts, and small effectful edges around pure domain logic. If a function depends on or changes something important, make that visible in its signature, receiver, return value, or module API.
 
-## Minimize Integration Complexity
+## Minimize Module Integration
 
-Integration complexity is the amount of information one part of the codebase must know about another to use it correctly. Reduce it by designing deep modules: small public interfaces that hide substantial implementation knowledge.
+Integration complexity is the amount of cross-boundary information one part of the codebase must rely on from another to use it correctly. In the same sense that an integrated system is one whose parts causally constrain each other, integrated code has parts whose behavior depends on facts, ordering, invariants, or representations outside the local module.
+
+The recommendation is not to eliminate integration. Useful software needs parts to cooperate. The recommendation is to make necessary integration explicit and small: callers should depend on a stable public contract, not on the callee's internal state machine, data layout, protocol steps, framework context, or storage model.
+
+Reduce integration complexity by designing deep modules: small public interfaces that hide substantial implementation knowledge.
 
 Prefer modules whose public API makes clear:
 
