@@ -20,6 +20,14 @@ Implicit dependencies break local reasoning:
 
 Explicit dependencies limit blast radius to callers. Honest signatures let the compiler catch contract breaks.
 
+## Prefer Simple Monomorphic Designs
+
+Model the behavior that exists now with one clear shape. Add branches, options, modes, hooks, or extension points only for current callers or inputs.
+
+Prefer required fields and straight-line logic with named intermediate data. Avoid optional params, nullable fields, flags, callbacks, generic knobs, config objects, polymorphic helpers, and conditional logic added for future flexibility.
+
+Before adding a branch or option, name the real case that needs it. If there is none, keep the API monomorphic. When a second case appears, introduce a discriminated union, separate function, or small adapter at that boundary.
+
 ## Separate Side Effects from Pure Logic
 
 Push I/O, network calls, filesystem access, DB writes, logging, clock access, and framework integration to the edges. Domain logic should stay pure.
@@ -139,4 +147,5 @@ Avoid optional properties unless the property is genuinely optional in that exac
 - Prefer declarative collection transforms (`map`, `filter`, `flatMap`) over manual accumulation when they make intent clearer.
 - Use local mutation only for measured performance needs, clearer imperative algorithms, or inherently mutating APIs. Isolate it tightly.
 - Create intermediate data structures when they make the logic easier to name, inspect, or test.
+- Avoid conditional logic that serves no current purpose. Keep the current path monomorphic until a real second case exists.
 - Encode important logic with typed data and explicit branches, not string conventions or ad hoc conditionals.
